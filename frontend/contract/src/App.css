@@ -20,7 +20,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  /*font-size: calc(10px + 2vmin);*/
   color: white;
 }
 
@@ -35,4 +35,25 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+button {
+    padding: 1em 4em;
+    border-radius: 10px;
+    border: 0;
+    background-image: linear-gradient(#a949ce, #a51387);
+    font-family: Candara, serif;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    background-image: linear-gradient(#a51387, #a949ce)
+
 }
