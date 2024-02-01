@@ -54,7 +54,7 @@ button {
     background-image: linear-gradient(#a949ce, #a51387);
     font-family: Candara, serif;
     color: white;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-weight: bold;
     font-size: 1.2em;
     cursor: pointer;

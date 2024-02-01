@@ -8,7 +8,7 @@ const ethers = require('ethers');
 
 function App() {
 
-    const contractAddress = "0xe3073F00B29AAd5b6ef1DC46dd96E39F29b8C2B0";
+    const contractAddress = "0x0d3Df5C18cc48099a3a829E56d1628afb904f278";
 
     // "0x52fFFd126E03b5e06C0bA850aB297ab79cbe3Bb6";
 
@@ -89,7 +89,7 @@ function App() {
                                             disabled={isSubmitting}
                                             className="btn btn-block"
                                         >
-                                            {isSubmitting ? "Creating Message" : "Create Message"}
+                                            {isSubmitting ? "Creating Message..." : "Create Message"}
                                         </button>
                                     </div>
                                 </form>
