@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simple dApp that takes input as a message and gives output as a message.  
 
 ## Available Scripts
 
