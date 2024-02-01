@@ -37,10 +37,19 @@
   }
 }
 
+textarea{
+    width: 100%;
+    margin-bottom:10px;
+}
+h2{
+    margin-bottom: 0;
+}
 
 button {
     padding: 1em 4em;
     border-radius: 10px;
+    width: 100%;
+
     border: 0;
     background-image: linear-gradient(#a949ce, #a51387);
     font-family: Candara, serif;
@@ -55,5 +64,4 @@ button:hover {
     transform: scale(1.05);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     background-image: linear-gradient(#a51387, #a949ce)
-
 }

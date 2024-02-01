@@ -1,13 +1,16 @@
 import './App.css';
 import contractABI from "./abi.json"
-import React, {useState} from 'react';
+import React from 'react';
+import {Formik} from "formik";
 
 const ethers = require('ethers');
 
 
 function App() {
 
-    const contractAddress = "0x52fFFd126E03b5e06C0bA850aB297ab79cbe3Bb6";
+    const contractAddress = "0xe3073F00B29AAd5b6ef1DC46dd96E39F29b8C2B0";
+
+    // "0x52fFFd126E03b5e06C0bA850aB297ab79cbe3Bb6";
 
 
     async function requestAccount() {
@@ -21,17 +24,15 @@ function App() {
             await requestAccount();
             const provider = new ethers.BrowserProvider(window.ethereum);
             const signer = provider.getSigner();
-            const contract = new ethers.Contract(contractAddress, contractABI, await signer);
-
+            const contract =
+                new ethers.Contract(contractAddress, contractABI, await signer);
             try {
                 const transaction = await contract.setMessage(message);
                 await transaction.wait();
                 console.log("Message added successfully")
-
             } catch (err) {
                 console.error('Error:', err);
             }
-
         }
     }
 
@@ -52,27 +53,49 @@ function App() {
         }
     }
 
-    const [message, setInput] = useState('');
-    const handleTextareaChange = (event) => {
-        event.preventDefault();
-        setInput(event.target.value);
-    };
-
-    const handleSendMessage = () => {
-        setInput(message);
-    };
-
-
     return (
         <div className="App">
             <header className="App-header">
                 <div>
-
-                    <form>
-                        <label htmlFor="com">Message</label><br/>
-                        <textarea id="com" cols="30" rows="10" value={message} onChange={handleTextareaChange}></textarea><br/>
-                        <button id={"but"} onClick={handleSendMessage}>Send Message</button>
-                    </form>
+                    <section className="form">
+                        <Formik initialValues={{Message: ""}} onSubmit={async (values, {setSubmitting}) => {
+                                await setMessage(values.Message)
+                                setSubmitting(true);
+                                values.Message = ""
+                            }}>
+                            {({
+                                  values,
+                                  handleChange,
+                                  handleBlur,
+                                  handleSubmit,
+                                  isSubmitting,
+                              }) => (
+                                <form onSubmit={handleSubmit}>
+                                    <div className="form-group">
+                                        <h2>Message</h2>
+                                        <textarea
+                                            id="com"
+                                            cols="30"
+                                            rows="10"
+                                            name="Message"
+                                            onBlur={handleBlur}
+                                            value={values.Message}
+                                            onChange={handleChange}>
+                                       </textarea><br/>
+                                    </div>
+                                    <div className="form-group">
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className="btn btn-block"
+                                        >
+                                            {isSubmitting ? "Creating Message" : "Create Message"}
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
+                        </Formik>
+                    </section>
                 </div>
                 <hr/>
                 <div>

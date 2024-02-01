@@ -8,7 +8,7 @@ contract Message {
     string public message;
 
     constructor(string memory initialMessage) {
-        message = initialMessage;
+        message =  initialMessage;
     }
 
     function setMessage(string memory newMessage) public {
