@@ -6,26 +6,23 @@
 // global scope, and execute the script.
 const hre = require("hardhat");
 const {ethers} = require("hardhat");
+require("dotenv").config();
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
+    const currentTimestampInSeconds = Math.round(Date.now() / 1000);
+    const unlockTime = currentTimestampInSeconds + 60;
 
-  const lockedAmount = hre.ethers.parseEther("0.001");
+    const contractName = "Message";
+    const lock = await hre.ethers.deployContract(contractName, ["My name is Dean"]);
 
-  const lock = await hre.ethers.deployContract("Message", ["My name is Dean"]);
+    await lock.waitForDeployment();
 
-  await lock.waitForDeployment();
-
-  console.log(
-    `Lock with ${ethers.formatEther(lockedAmount)
-    }ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
-  );
+    console.log(`Contract: ${contractName} is deployed successfully on ${process.env["NETWORK"]} network to ${lock.target}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
+    console.error(error);
+    process.exitCode = 1;
 });
